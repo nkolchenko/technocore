@@ -5,4 +5,3 @@ tasks:
     command: hostname
   - name: check OS info
     command: cat /etc/os-release
-    
