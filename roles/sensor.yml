@@ -1,0 +1,8 @@
+name: sensor
+hosts: raspberries
+tasks:
+  - name: check the hostname
+    command: hostname
+  - name: check OS info
+    command: cat /etc/os-release
+    
