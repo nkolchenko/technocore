@@ -1,4 +1,17 @@
-[raspberries]
+# Surveillance station
+glaz        ansible_host=192.168.0.181
 
-glaz:
-  ansible_host: 192.168.0.181
+# Bluetooth hosts
+bt-01 ansible_host=192.168.0.181 ansible_user=pi ansible_ssh_pass=raspberry
+
+# Groups
+
+[cam_boxes]
+glaz
+
+[bt_boxes]
+bt-01
+
+[raspberries:children]
+bt_boxes
+cam_boxes

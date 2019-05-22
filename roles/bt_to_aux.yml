@@ -1,0 +1,62 @@
+hosts: bt_boxes
+tasks:
+
+  - name: Upgrade all packages to the latest version
+    apt:
+      update_cache: yes
+      name: "*"
+      state: latest
+
+  - name: Update all packages to the latest version
+    apt:
+      upgrade: dist
+
+  - name: install needed packages
+    apt:
+      name: "{{ packages }}"
+     vars:
+      packages:
+       - pulseaudio
+       - pulseaudio-module-bluetooth
+       - bluez
+
+  - name: Add users to groups
+    user:
+      name: "{{ users }}"
+      vars:
+        users:
+          - pi
+          - root
+      groups: pulse-access
+      append: yes
+
+
+  - name: edit pulseaudio config
+    blockinfile:
+      path: /etc/dbus-1/system.d/pulseaudio-bluetooth.conf
+      block: |
+        <busconfig>
+          <policy user="pulse">
+            <allow send_destination="org.bluez"/>
+          </policy>
+        </busconfig>
+
+  - name: adjust pulseaudio.service not to start system-wide
+    lineinfile:
+      path: /etc/systemd/system/pulseaudio.service
+      regexp: '^ExecStart '
+      line: ExecStart=/usr/bin/pulseaudio --disallow-exit --disable-shm --exit-idle-time=-1
+
+  - name: force systemd re-read services configs
+      systemd:
+        daemon_reload: yes
+
+
+  - name: check services status
+      systemd:
+        name: '{{ services }}'
+        vars:
+          services:
+            - bluetooth
+            - pulseaudio
+        state: restarted
