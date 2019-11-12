@@ -1,7 +1,5 @@
 #!/usr/bin/python
 
-from __future__ import print_function
-
 page_head="""apiVersion: v1
 kind: Service
 metadata: 
