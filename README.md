@@ -1,9 +1,6 @@
 # technocore
 
-Set of files created while I've been checking Ansible. 
-Ansible docs:  https://docs.ansible.com/ansible/latest/user_guide/
+Set of files created while I've been playing with Kubernetes and Ansible. 
 
-Plan:
-    - intro
-    - yaml
-    - inventory file
+Kubernetes docs: https://kubernetes.io/docs/home/
+Ansible docs:  https://docs.ansible.com/ansible/latest/user_guide/
