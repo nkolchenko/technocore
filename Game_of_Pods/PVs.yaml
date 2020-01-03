@@ -4,20 +4,20 @@ metadata:
   name:  drupal-mysql-pv
 spec:
   accessModes: [ "ReadWriteOnce" ]
-  storageClassName: manual
+#  storageClassName: manual
   capacity:
-   storage: "1Gi"
+   storage: "5Gi"
   hostPath:
-   path: /tmp/drupal-mysql-pv
+   path: /drupal-mysql-data
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name:  drupal-pv
 spec:
-  storageClassName: manual 
+#  storageClassName: manual 
   accessModes: [ "ReadWriteOnce" ]
   capacity:
-   storage: "1Gi"
+   storage: "5Gi"
   hostPath:
-   path: /tmp/drupal-pv
+   path: /drupal-data
