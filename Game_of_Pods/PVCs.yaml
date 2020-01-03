@@ -5,11 +5,10 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-#  volumeMode: Filesystem
   resources:
     requests:
-      storage: 1Gi
-  storageClassName: manual 
+      storage: 5Gi
+#  storageClassName: manual
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -18,8 +17,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-#volumeMode: Filesystem
   resources:
     requests:
-      storage: 1Gi
-  storageClassName: manual
+      storage: 5Gi
+#  storageClassName: manual
